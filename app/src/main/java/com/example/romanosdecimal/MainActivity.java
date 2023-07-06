@@ -11,15 +11,11 @@ public class MainActivity extends AppCompatActivity {
 
     TextView romano;
     TextView decimal;
-    Button i;
-    Button v;
-    Button x;
-    Button l;
-    Button c;
-    Button d;
-    Button m;
+
     Button calcular;
     Button reset;
+
+    Button tecla;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -28,70 +24,24 @@ public class MainActivity extends AppCompatActivity {
 
         romano= findViewById(R.id.tvRomanos);
         decimal= findViewById(R.id.tvDecimal);
-        i=findViewById(R.id.buttonI);
-        v=findViewById(R.id.buttonV);
-        x=findViewById(R.id.buttonX);
-        l=findViewById(R.id.buttonL);
-        c=findViewById(R.id.buttonC);
-        d=findViewById(R.id.buttonD);
-        m=findViewById(R.id.buttonM);
         calcular=findViewById(R.id.buttonCalcular);
         reset=findViewById(R.id.buttonReset);
+        String cadenaRomanos= "IVXLCDM";
 
-        i.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                String actual= romano.getText().toString();
-                romano.setText(actual+"I");
-            }
-        });
-        v.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                String actual= romano.getText().toString();
-                romano.setText(actual+"V");
-            }
-        });
+        for (int j=0; j<cadenaRomanos.length();j++){
+            char letra= cadenaRomanos.charAt(j);
+            int buttonId= getResources().getIdentifier("button"+letra,"id",getPackageName());
+            tecla= findViewById(buttonId);
 
-        x.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                String actual= romano.getText().toString();
-                romano.setText(actual+"X");
-            }
-        });
+            tecla.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    String actual= romano.getText().toString();
+                    romano.setText(actual+letra);
+                }
+            });
 
-        l.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                String actual= romano.getText().toString();
-                romano.setText(actual+"L");
-            }
-        });
-
-        c.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                String actual= romano.getText().toString();
-                romano.setText(actual+"C");
-            }
-        });
-
-        d.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                String actual= romano.getText().toString();
-                romano.setText(actual+"D");
-            }
-        });
-
-        m.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                String actual= romano.getText().toString();
-                romano.setText(actual+"M");
-            }
-        });
+        }
 
         calcular.setOnClickListener(new View.OnClickListener() {
             @Override
